@@ -3,43 +3,49 @@ package Poker_Game;
 import java.util.Arrays;
 
 public class Split {
-    public int [] Number1 = new int[5];
-    public char[] Symbol1 = new char[5];
-    public char[] s = new char[5];
+    public int[] Number = new int[5];
+    public char[] Symbol = new char[5];
 
-    Split(String[] Player) {
+    public Split(String[] Player) {
         for (int i = 0; i < Player.length; i++) {
-            char[] s = Player[i].toCharArray();
-            if(Character.isLetter(s[0])){
-                switch(s[0]) {
+            char[] card = Player[i].toCharArray();
+
+            if (Character.isLetter(card[0])) {
+                switch (card[0]) {
                     case 'T':
-                        Number1[i] = 10;
-                        Symbol1[i] = s[1];
+                        Number[i] = 10;
+                        Symbol[i] = card[1];
+
                         break;
                     case 'J':
-                        Number1[i] = 11;
-                        Symbol1[i] = s[1];
+                        Number[i] = 11;
+                        Symbol[i] = card[1];
+
                         break;
                     case 'Q':
-                        Number1[i] = 12;
-                        Symbol1[i] = s[1];
+                        Number[i] = 12;
+                        Symbol[i] = card[1];
+
                         break;
                     case 'K':
-                        Number1[i] = 13;
-                        Symbol1[i] = s[1];
+                        Number[i] = 13;
+                        Symbol[i] = card[1];
+
                         break;
-                    case 'A':
-                        Number1[i] = 14;
-                        Symbol1[i] = s[1];
+                    default:
+                        Number[i] = 14;
+                        Symbol[i] = card[1];
+
                         break;
                 }
             }
             else {
-                Symbol1[i] = s[1];
-                Number1[i] = Integer.parseInt(String.valueOf(s[0]));
+                Symbol[i] = card[1];
+                Number[i] = Integer.parseInt(String.valueOf(card[0]));
             }
         }
-        Arrays.sort(Number1);
-        Arrays.sort(Symbol1);
+
+        Arrays.sort(Number);
+        Arrays.sort(Symbol);
     }
 }

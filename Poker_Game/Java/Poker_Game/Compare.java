@@ -1,24 +1,38 @@
 package Poker_Game;
 
 public class Compare {
+    public boolean HasPlayer1Won(HandRank h1, HandRank h2) {
+        boolean toReturn = false;
 
-    int P1wins;
+        if (h1.RankValue > h2.RankValue) {
+            toReturn = true;
+        }
+        else {
+            if (h1.RankValue == h2.RankValue) {
+                switch (h1.RankValue) {
+                    case 1:
+                    case 5:
+                    case 6:
+                    case 9:
+                        toReturn = CompareHighCards(h1.HighCard, h2.HighCard);
 
-    Compare(int h1, int h2){
-        Compare(h1,h2);
+                        break;
+                    default:
+                        toReturn = CompareHighCards(h1.RankMax, h2.RankMax);
+
+                        if (!toReturn) {
+                            toReturn = CompareHighCards(h1.HighCard, h2.HighCard);
+                        }
+
+                        break;
+                }
+            }
+        }
+
+        return toReturn;
     }
 
-    public void Compare(int h1, int h2){
-        if (h1 > h2){
-            P1wins++;
-            System.out.println("Player 1 won " + P1wins + " matches.");
-        }
-        if (h1 < h2){
-            System.out.println("Player 1 won " + P1wins + " matches.");
-        }
-
-    }
-    public void compareHighCards(int hc1, int hc2){
-        if(hc1>hc2) P1wins++;
+    public boolean CompareHighCards(int value1, int value2) {
+        return value1 > value2;
     }
 }
